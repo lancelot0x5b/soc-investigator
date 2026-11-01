@@ -80,15 +80,15 @@
 
 ---
 
-## DS-006 — Ghim phiên bản pytest `<9` do plugin `libtmux` trong môi trường
+## DS-006 — Xung đột plugin `libtmux` với pytest (đã đóng — không cần quyết định nữa)
 
-**Bối cảnh:** Môi trường dev có sẵn `libtmux` với pytest plugin không tương thích pytest 9.x (mọi lần chạy pytest đều INTERNALERROR "Marks cannot be applied to fixtures", kể cả test rỗng). Đây là lỗi của package bên thứ ba đã cài sẵn, không phải code dự án.
+**Bối cảnh ban đầu:** Môi trường dev có sẵn `libtmux` đăng ký một pytest plugin không tương thích pytest 9.x, khiến mọi lệnh pytest bị INTERNALERROR ("Marks cannot be applied to fixtures"), kể cả test rỗng. Giải pháp tạm thời từng đề xuất: ghim `pytest>=8.0,<9`.
 
-**Phương án:**
-- A) Ghim `pytest>=8.0,<9` trong `[project.optional-dependencies].dev` của `pyproject.toml` cho tới khi Task CI riêng (Task 10) xử lý môi trường sạch.
-- B) Chạy pytest với `-p no:libtmux` trong mọi lệnh (dễ rò rỉ vào script/CI, con người quên cờ).
+**Điều tra lại (2026-11-01):** Đã kiểm chứng bằng thực nghiệm:
+- Gỡ `libtmux` khỏi môi trường → cài pytest 9.2.0 → chạy toàn bộ test suite: **26 passed**, không còn INTERNALERROR.
+- Kết luận: lỗi nằm ở package bên thứ ba `libtmux` cài sẵn trong môi trường, không liên quan code dự án và không cần ghim phiên bản pytest.
 
-**Khuyến nghị:** Phương án A — phạm vi ảnh hưởng nhỏ, chỉ dải dev dependency; ghi chú để nới dải khi environment sạch.
+**Hành động đã thực hiện:** Gỡ `libtmux`; bỏ trần `<9`, dev extras trở về `pytest>=8.0`; xác nhận lại toàn bộ cổng nghiệm thu Task 0 PASS.
 
-**Quyết định của người chủ:** *(chờ)*
-**Ngày:** *(chờ)*
+**Quyết định của người chủ:** Không còn hiệu lực (phiếu đóng vì không cần thiết). Nếu sau này `libtmux` được cài lại vì lý do khác, mở phiếu mới.
+**Ngày:** 2026-11-01
