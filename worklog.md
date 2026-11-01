@@ -36,7 +36,7 @@
 - `soc-investigator smoke` của cổng CI §8 sẽ không chạy PASS cho tới Task 8 (pipeline FakeProvider); ở Task 0 đây là hành vi stub exit 70 đã duyệt qua DS-002-B.
 
 **Việc còn lại / câu hỏi treo:**
-- DS-006 chờ người chủ duyệt (ghim `pytest>=8.0,<9` do plugin `libtmux` cài sẵn trong môi trường xung đột pytest 9.x — nếu không ghim, mọi lệnh pytest trong repo này bị INTERNALERROR).
+- DS-006 đã đóng (2026-11-01): nguyên nhân gốc là plugin `libtmux` cài sẵn trong môi trường xung đột pytest 9.x; đã gỡ `libtmux`, xác nhận pytest 9.2.0 chạy OK (26 passed), bỏ trần `<9` — dev extras trở về `pytest>=8.0`. Không cần quyết định của người chủ.
 - Không tự commit (AGENTS.md §3.4) — quyền Git thuộc người chủ.
 
 **Task tiếp theo (chỉ đề xuất, chưa triển khai):** Task 1 — Schema miền dữ liệu và NDJSON replay tất định.
