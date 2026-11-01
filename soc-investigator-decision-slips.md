@@ -15,8 +15,8 @@
 
 **Khuyến nghị:** Phương án A — đã được kế hoạch nêu làm mặc định, phân biệt đủ ba nhóm lỗi bắt buộc theo Spec.
 
-**Quyết định của người chủ:** *(chờ)*
-**Ngày:** *(chờ)*
+**Quyết định của người chủ:** DS-001: dùng bảng exit code đề xuất của kế hoạch (`0/10/11/20/30/40/50/70`, Typer giữ mã 2 cho lỗi cú pháp).
+**Ngày:** 2026-11-01
 
 ---
 
@@ -30,8 +30,8 @@
 
 **Khuyến nghị:** Phương án A — tối thiểu, không tạo hành vi sản phẩm giả; tránh phải sửa contract sau này. Nếu người chủ muốn người dùng cuối phân biệt "lệnh tồn tại nhưng chưa build", chọn B với exit code 70.
 
-**Quyết định của người chủ:** *(chờ)*
-**Ngày:** *(chờ)*
+**Quyết định của người chủ:** DS-002: phương án B — khai báo sẵn toàn bộ lệnh ở Task 0, mỗi lệnh in "not implemented" và thoát bằng exit code 70.
+**Ngày:** 2026-11-01
 
 ---
 
@@ -45,8 +45,8 @@
 
 **Khuyến nghị:** Phương án A — chốt sớm hợp đồng config để doctor/providers/connectors sau này không đổi interface; vẫn "nhỏ gọn" theo yêu cầu, không thêm framework khám phá plugin/provider (đúng ràng buộc Task 0). Lưu ý: môi trường hiện có sẵn `pydantic-settings` nhưng ta không dùng để tránh dependency ngoài phạm vi.
 
-**Quyết định của người chủ:** *(chờ)*
-**Ngày:** *(chờ)*
+**Quyết định của người chủ:** DS-003: phương án A — Pydantic model 10 field như mô tả; thiếu/sai giá trị bắt buộc → ConfigError (exit 20); không dùng pydantic-settings hay plugin framework.
+**Ngày:** 2026-11-01
 
 ---
 
@@ -60,8 +60,8 @@
 
 **Khuyến nghị:** Phương án A để giữ lịch sử bàn giao trên repository như AGENTS.md yêu cầu. Phiếu này xin phép cho cả `worklog.md`; `soc-investigator-decision-slips.md` đã được tạo kèm các phiếu DS-001..DS-005 (có thể xóa nếu người chủ không duyệt).
 
-**Quyết định của người chủ:** *(chờ)*
-**Ngày:** *(chờ)*
+**Quyết định của người chủ:** DS-004: cho phép tạo mới `worklog.md`.
+**Ngày:** 2026-11-01
 
 ---
 
@@ -74,6 +74,21 @@
 - B) Đưa mọi test vào `tests/unit/` ngay từ Task 0.
 
 **Khuyến nghị:** Phương án A — bám sát danh sách file trong kế hoạch, tránh xáo trộn về sau.
+
+**Quyết định của người chủ:** DS-005: phương án A — `tests/test_project_baseline.py` nằm trực tiếp dưới `tests/`; task sau dùng `tests/unit/`, `tests/integration/`.
+**Ngày:** 2026-11-01
+
+---
+
+## DS-006 — Ghim phiên bản pytest `<9` do plugin `libtmux` trong môi trường
+
+**Bối cảnh:** Môi trường dev có sẵn `libtmux` với pytest plugin không tương thích pytest 9.x (mọi lần chạy pytest đều INTERNALERROR "Marks cannot be applied to fixtures", kể cả test rỗng). Đây là lỗi của package bên thứ ba đã cài sẵn, không phải code dự án.
+
+**Phương án:**
+- A) Ghim `pytest>=8.0,<9` trong `[project.optional-dependencies].dev` của `pyproject.toml` cho tới khi Task CI riêng (Task 10) xử lý môi trường sạch.
+- B) Chạy pytest với `-p no:libtmux` trong mọi lệnh (dễ rò rỉ vào script/CI, con người quên cờ).
+
+**Khuyến nghị:** Phương án A — phạm vi ảnh hưởng nhỏ, chỉ dải dev dependency; ghi chú để nới dải khi environment sạch.
 
 **Quyết định của người chủ:** *(chờ)*
 **Ngày:** *(chờ)*

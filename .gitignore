@@ -1,0 +1,23 @@
+# Secrets & local configuration (AGENTS.md §7.9 — bắt buộc)
+.env
+*.env.local
+
+# Generated reports & redaction map/ledger (AGENTS.md §7.9 — bắt buộc)
+reports/
+
+# Local model & lab artifacts
+models/
+lab-data/*.gguf
+*.gguf
+
+# Python build/test artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
