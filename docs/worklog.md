@@ -40,3 +40,22 @@
 - Không tự commit (AGENTS.md §3.4) — quyền Git thuộc người chủ.
 
 **Task tiếp theo (chỉ đề xuất, chưa triển khai):** Task 1 — Schema miền dữ liệu và NDJSON replay tất định.
+
+---
+
+## 2026-11-01 — Bổ sung: dọn dẹp theo yêu cầu người chủ (sau nghiệm thu Task 0)
+
+**Việc đã làm:**
+1. Gỡ `libtmux` khỏi môi trường (không liên quan dự án, gây xung đột plugin với pytest). pytest 9.2.0 chạy sạch; dev extras giữ `pytest>=8.0`, không cần ghim trần. DS-006 đóng.
+2. Ruff không đụng file `.md`: `[tool.ruff] extend-exclude = ["*.md"]` đã cấu hình từ trước; xác nhận lại bằng `ruff check .` và `ruff format --check .`.
+3. Chuyển toàn bộ file `.md` vào `docs/` theo phê duyệt của người chủ: `AGENTS.md`, `SKILL.md`, spec, execution plan, decision slips, worklog (dùng `git mv`). `README.md` giữ ở gốc theo layout Task 0; cập nhật tham chiếu trong README sang đường dẫn `docs/...`.
+
+**Lệnh & kết quả (bằng chứng):**
+| Lệnh | Kết quả | Exit code |
+|---|---|---|
+| `python -m pytest -q` | 26 passed | 0 |
+| `ruff check .` | All checks passed! | 0 |
+| `ruff format --check .` | pass (bỏ qua *.md) | 0 |
+| `soc-investigator --help` | in đủ 8 lệnh stub | 0 |
+
+**Lưu ý cho người chủ:** repo local hiện **không có remote git nào** (`git remote -v` trống), vì vậy các thay đổi chưa thể đẩy lên GitHub. Cần người chủ cung cấp URL remote hoặc tự push từ branch cục bộ `qwen-code-5ee4a145-...`.

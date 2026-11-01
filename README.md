@@ -45,7 +45,10 @@ ruff format --check .
 
 ## Tài liệu dự án
 
-- `soc-investigator-spec-final.md` — đặc tả sản phẩm (nguồn yêu cầu có thẩm quyền)
-- `soc-investigator-execution-testing-plan-vi.md` — kế hoạch triển khai & kiểm thử (Task 0–11)
-- `AGENTS.md` — quy tắc làm việc của AI Coding Agent
-- `worklog.md` / `soc-investigator-decision-slips.md` — nhật ký tiến độ / sổ quyết định
+Tất cả tài liệu nằm trong thư mục `docs/`:
+
+- `docs/soc-investigator-spec-final.md` — đặc tả sản phẩm (nguồn yêu cầu có thẩm quyền)
+- `docs/soc-investigator-execution-testing-plan-vi.md` — kế hoạch triển khai & kiểm thử (Task 0–11)
+- `docs/AGENTS.md` — quy tắc làm việc của AI Coding Agent
+- `docs/SKILL.md` — nguyên tắc làm việc (Karpathy guidelines)
+- `docs/worklog.md` / `docs/soc-investigator-decision-slips.md` — nhật ký tiến độ / sổ quyết định
