@@ -92,3 +92,63 @@
 
 **Quyết định của người chủ:** Không còn hiệu lực (phiếu đóng vì không cần thiết). Nếu sau này `libtmux` được cài lại vì lý do khác, mở phiếu mới.
 **Ngày:** 2026-11-01
+
+---
+
+## DS-007 — Kích thước & nguồn fixture NDJSON cho Task 1
+
+**Bối cảnh:** Task 1 cần fixture replay (`lab-data/sample-mini.ndjson`) để test pipeline tất định offline. Người chủ chất vấn: fixture tự dựng thủ công làm sao đảm bảo đúng thực tế? Thực tế: fixture chỉ dùng kiểm chứng logic pipeline; độ khớp với SIEM thật do smoke/golden live (Task 8–10) đảm nhiệm. Kế hoạch ban đầu ghi "~15–20 dòng"; spec/plan nhắc kịch bản phishing ~100 record.
+
+**Phương án:**
+- A) Fixture synthetic nhỏ nhưng đủ đại diện: **~100 record** trộn alert+event theo schema Wazuh-like (đã chốt tại DS-008), có case phishing hoàn chỉnh + ca nhiễu; ghi rõ trong header là "synthetic, schema-first".
+- B) Chờ người chủ cung cấp file export thật từ lab rồi mới dựng fixture.
+
+**Khuyến nghị:** Phương án A — không block Task 1; khi có dữ liệu thật (Task 8+) sẽ bổ sung fixture exported song song, giữ fixture synthetic cho unit test tất định.
+
+**Quyết định của người chủ:** *(chờ)*
+**Ngày:** 2026-11-02
+
+---
+
+## DS-008 — Định nghĩa model `InvestigationReport` ngay từ Task 1
+
+**Bối cảnh:** Task 1 yêu cầu "schema miền dữ liệu" đầy đủ, trong đó có `InvestigationReport`. Spec mô tả report gồm nhiều phần (tóm tắt, bằng chứng/evidence refs, kết luận, mức tin cậy, redaction metadata...). Chưa rõ nên định nghĩa toàn bộ field ngay hay từng phần.
+
+**Phương án:**
+- A) Định nghĩa **đầy đủ model một lần** theo Spec ngay trong Task 1 (field chưa dùng tới Task sau vẫn khai báo, validate được, serialize ra JSON ổn định).
+- B) Chỉ định nghĩa phần tối thiểu cho replay Task 1, bổ sung dần ở Task sau.
+
+**Khuyến nghị:** Phương án A — hợp đồng dữ liệu ổn định sớm, tránh đổi schema gây vỡ test/nhánh serialize về sau; đúng tinh thần "contract-first" của Task 0.
+
+**Quyết định của người chủ:** *(chờ)*
+**Ngày:** 2026-11-02
+
+---
+
+## DS-009 — Hành vi lỗi của `FileConnector` khi đọc NDJSON
+
+**Bối cảnh:** Khi file replay có dòng hỏng (JSON không parse được, thiếu field bắt buộc, record lạ), chưa chốt chiến lược xử lý.
+
+**Phương án:**
+- A) **Fail-fast**: gặp record lỗi → dừng, raise typed error (connector failure, exit 30), thông báo nêu số dòng + lý do, không lộ nội dung secret.
+- B) Bỏ qua record lỗi, ghi warning, tiếp tục đọc.
+
+**Khuyến nghị:** Phương án A — replay phải tất định và trung thực; im lặng bỏ qua dữ liệu hỏng tạo rủi ro điều tra sai mà không ai biết.
+
+**Quyết định của người chủ:** *(chờ)*
+**Ngày:** 2026-11-02
+
+---
+
+## DS-010 — Ghi output của `FileConnector` (kết quả truy vấn replay)
+
+**Bối cảnh:** Connector Protocol trả về danh sách record đã lọc/chuẩn hóa. Task 1 chưa yêu cầu ghi file; nhưng plan có nhắc khả năng dump kết quả truy vấn ra JSON cục bộ để debug/replay.
+
+**Phương án:**
+- A) Task 1 chỉ trả về collection trong bộ nhớ (test assert trực tiếp); chưa ghi file.
+- B) Có tham số tùy chọn `--dump` ghi file JSON atomic vào `reports/_source/` ngay từ Task 1.
+
+**Khuyến nghị:** Phương án A — tối thiểu cho Task 1; việc persist kết quả truy vấn thuộc phạm vi pipeline/CLI Task 4–5, khi đó thiết kế atomic write một lần.
+
+**Quyết định của người chủ:** *(chờ)*
+**Ngày:** 2026-11-02
