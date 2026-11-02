@@ -59,3 +59,19 @@
 | `soc-investigator --help` | in đủ 8 lệnh stub | 0 |
 
 **Lưu ý cho người chủ:** repo local hiện **không có remote git nào** (`git remote -v` trống), vì vậy các thay đổi chưa thể đẩy lên GitHub. Cần người chủ cung cấp URL remote hoặc tự push từ branch cục bộ `qwen-code-5ee4a145-...`.
+
+---
+
+## 2026-11-02 — Phiên tiếp theo: chuẩn bị Task 1 (chưa code)
+
+**Việc đã làm:**
+1. Tiếp tục phiên sau khi tạm dừng; rà soát trạng thái repo (Task 0 đã commit, working tree sạch).
+2. Phân tích yêu cầu Task 1 (Schema miền dữ liệu + NDJSON replay tất định) từ Spec và Execution Plan.
+3. Giải đáp chất vấn của người chủ về fixture tự dựng: thống nhất chiến lược 2 tầng (fixture synthetic cho unit test tất định; độ khớp thực tế do smoke/golden live Task 8–10 đảm nhiệm).
+4. Ghi 4 phiếu quyết định mới DS-007..DS-010 vào `docs/soc-investigator-decision-slips.md` (đang chờ người chủ duyệt).
+
+**File thay đổi:** `docs/soc-investigator-decision-slips.md` (thêm DS-007..DS-010), `docs/worklog.md` (bản ghi này).
+
+**Việc còn treo:** Chờ quyết định DS-007 (kích thước/nguồn fixture ~100 record synthetic), DS-008 (định nghĩa đầy đủ InvestigationReport ngay), DS-009 (fail-fast khi NDJSON lỗi), DS-010 (không ghi file ở Task 1). Sau khi duyệt → viết test trước (TDD) rồi implementation.
+
+**Task tiếp theo (chỉ đề xuất, chưa triển khai):** Task 1 — bắt đầu code ngay sau khi DS-007..DS-010 được duyệt.

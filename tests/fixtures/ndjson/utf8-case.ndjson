@@ -1,0 +1,1 @@
+{"_index": "wazuh-archives-x", "_id": "u1", "_source": {"@timestamp": "2026-10-31T09:00:00Z", "agent": {"name": "WS-014"}, "data": {"win": {"eventdata": {"command": "powershell.exe -enc \"SGVsbG8\" # nhÃ©n vá»‡t \\ \"quoted\""}}}}}

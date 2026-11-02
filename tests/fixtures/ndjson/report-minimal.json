@@ -1,0 +1,133 @@
+{
+  "alert_id": "alert-phish-0001",
+  "attack_mapping": [
+    {
+      "citations": [
+        "E01"
+      ],
+      "confidence": "high",
+      "name": "PowerShell",
+      "technique_id": "T1059.001"
+    }
+  ],
+  "checklist_results": [
+    {
+      "citations": [
+        "E01"
+      ],
+      "question": "Interpreter duoc sinh boi Office",
+      "question_id": "A1",
+      "reason": null,
+      "status": "confirmed",
+      "tier": "A"
+    }
+  ],
+  "evidence_snapshot": {
+    "bundle_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "events": [
+      {
+        "evidence_id": "E01",
+        "raw": {
+          "placeholder": null
+        },
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    ]
+  },
+  "evidence_state": {
+    "abnormal_absences": [],
+    "declared_blind": [
+      "dns_query"
+    ],
+    "per_type_counts": {
+      "network": 1,
+      "process_create": 1
+    }
+  },
+  "facts": [
+    {
+      "citations": [
+        "E01"
+      ],
+      "statement": "WINWORD.EXE sinh powershell.exe voi tham so -enc"
+    }
+  ],
+  "generated_at": "2026-11-02T00:00:00Z",
+  "hypotheses": [],
+  "iocs": [
+    {
+      "citations": [
+        "E02"
+      ],
+      "type": "domain",
+      "value": "cdn-update.example"
+    }
+  ],
+  "meta": {
+    "budget": {
+      "applied": false,
+      "dropped_evidence": 0,
+      "dropped_types": {}
+    },
+    "evidence_stats": {
+      "distilled_evidence": 2,
+      "raw_events": 99
+    },
+    "latency_ms": 1200,
+    "ledger_file": "alert-phish-0001.ledger.json",
+    "mode": "replay",
+    "redaction": {
+      "counts": {
+        "USR": 1
+      },
+      "enabled": true
+    },
+    "validation": {
+      "dropped_claims": 0,
+      "unverified_claims": 0
+    }
+  },
+  "missing_data": [
+    "DNS query log"
+  ],
+  "model": {
+    "name": "fixture",
+    "provider": "fake"
+  },
+  "playbook_provenance": {
+    "files": [
+      {
+        "file": "playbooks/phish-initial-triage.yaml",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ]
+  },
+  "playbook_results": [
+    {
+      "reason": null,
+      "status": "answered",
+      "step": "xac nhan tien trinh thong dich lenh"
+    }
+  ],
+  "recommendations": [
+    {
+      "action": "Bat Sysmon EID 22",
+      "priority": "P2",
+      "source": null,
+      "would_enable": "phan biet C2 domain qua DNS"
+    }
+  ],
+  "scenario_id": "office-interpreter-execution-v1",
+  "schema_version": "0.2.6",
+  "scope_statement": "Goi hoi duoc tren host phat canh bao; mail gateway thuoc goi khac.",
+  "summary": "Bao cao toi thieu cho hop dong schema Task 1.",
+  "timeline": [
+    {
+      "citations": [
+        "E01"
+      ],
+      "event": "powershell.exe khoi dong",
+      "timestamp": "2026-10-31T09:01:00Z"
+    }
+  ]
+}
