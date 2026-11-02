@@ -1,6 +1,6 @@
 # SOC Investigator
 
-Trợ lý điều tra an ninh mạng (SOC) theo đặc tả **v0.2.6**: pipeline tất định
+Trợ lý điều tra an ninh mạng (SOC): pipeline tất định
 evidence-first, replay NDJSON offline, LLM chỉ nhận Evidence Bundle đã cô đọng
 và redaction.
 
