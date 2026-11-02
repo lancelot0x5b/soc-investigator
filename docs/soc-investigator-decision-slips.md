@@ -105,7 +105,7 @@
 
 **Khuyến nghị:** Phương án A — không block Task 1; khi có dữ liệu thật (Task 8+) sẽ bổ sung fixture exported song song, giữ fixture synthetic cho unit test tất định.
 
-**Quyết định của người chủ:** *(chờ)*
+**Quyết định của người chủ:** DS-007: làm theo khuyến nghị (Phương án A).
 **Ngày:** 2026-11-02
 
 ---
@@ -120,7 +120,7 @@
 
 **Khuyến nghị:** Phương án A — hợp đồng dữ liệu ổn định sớm, tránh đổi schema gây vỡ test/nhánh serialize về sau; đúng tinh thần "contract-first" của Task 0.
 
-**Quyết định của người chủ:** *(chờ)*
+**Quyết định của người chủ:** DS-008: làm theo khuyến nghị (Phương án A).
 **Ngày:** 2026-11-02
 
 ---
@@ -135,7 +135,7 @@
 
 **Khuyến nghị:** Phương án A — replay phải tất định và trung thực; im lặng bỏ qua dữ liệu hỏng tạo rủi ro điều tra sai mà không ai biết.
 
-**Quyết định của người chủ:** *(chờ)*
+**Quyết định của người chủ:** DS-009: làm theo khuyến nghị (Phương án A).
 **Ngày:** 2026-11-02
 
 ---
@@ -150,5 +150,5 @@
 
 **Khuyến nghị:** Phương án A — tối thiểu cho Task 1; việc persist kết quả truy vấn thuộc phạm vi pipeline/CLI Task 4–5, khi đó thiết kế atomic write một lần.
 
-**Quyết định của người chủ:** *(chờ)*
+**Quyết định của người chủ:** DS-010: làm theo khuyến nghị (Phương án A).
 **Ngày:** 2026-11-02
